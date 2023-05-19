@@ -3,8 +3,8 @@ package znet
 import (
 	"fmt"
 	"net"
-	"zinx-demo/util"
-	"zinx-demo/iface"
+	"server-demo/iface"
+	"server-demo/util"
 )
 
 // IServer实现类
@@ -99,6 +99,6 @@ func NewServer() iface.IServer {
 	return s
 }
 
-func (s *Server)GetConnManager() iface.IConnManager{
+func (s *Server) GetConnManager() iface.IConnManager {
 	return s.ConnManager
 }

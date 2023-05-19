@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net"
-	"time"
-	"zinx-demo/net"
+	"server-demo/net"
 )
 
 func main() {
@@ -40,13 +39,13 @@ func main() {
 			fmt.Println("unpack err", err)
 			break
 		}
-		if message.GetDataLen()>0{
+		if message.GetDataLen() > 0 {
 			dataBuf := make([]byte, message.GetDataLen())
-			if _, err := io.ReadFull(conn, dataBuf);err!=nil{
-				fmt.Println("read msg data err",err)
+			if _, err := io.ReadFull(conn, dataBuf); err != nil {
+				fmt.Println("read msg data err", err)
 				break
 			}
-			fmt.Println("recv server msg:ID=",message.GetMsgId()," len:",message.GetDataLen(),"data:",string(message.GetData()))
+			fmt.Println("recv server msg:ID=", message.GetMsgId(), " len:", message.GetDataLen(), "data:", string(message.GetData()))
 		}
 	}
 }

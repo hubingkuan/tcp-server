@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 	"net"
-	"zinx-demo/iface"
-	"zinx-demo/util"
+	"server-demo/iface"
+	"server-demo/util"
 )
 
 type Connection struct {
@@ -144,9 +144,9 @@ func (c *Connection) Send(msgID uint32, data []byte) error {
 }
 
 // 初始化链接模块的方法
-func NewConnection (server iface.IServer,conn *net.TCPConn, connID uint32, msgHandler iface.IMsgHandler) *Connection {
+func NewConnection(server iface.IServer, conn *net.TCPConn, connID uint32, msgHandler iface.IMsgHandler) *Connection {
 	c := &Connection{
-		TcpServer: server,
+		TcpServer:  server,
 		Conn:       conn,
 		ConnID:     connID,
 		MsgHandler: msgHandler,

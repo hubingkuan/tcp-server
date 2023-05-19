@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"zinx-demo/util"
-	"zinx-demo/iface"
+	"server-demo/iface"
+	"server-demo/util"
 )
 
 type DataPack struct {
@@ -47,7 +47,7 @@ func (dp *DataPack) Unpack(binaryData []byte) (iface.IMessage, error) {
 	}
 	// 判断dataLen是否超时允许的最大包长度
 	if util.GlobalObject.MaxPackageSize > 0 && msg.dataLen > util.GlobalObject.MaxPackageSize {
-		return nil,errors.New("too Large msg data recv!")
+		return nil, errors.New("too Large msg data recv!")
 	}
-	return msg,nil
+	return msg, nil
 }

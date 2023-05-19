@@ -1,8 +1,8 @@
 package main
 
 import (
-	"zinx-demo/iface"
-	"zinx-demo/net"
+	"server-demo/iface"
+	"server-demo/net"
 )
 
 type PingRouter struct {

@@ -2,9 +2,9 @@ package znet
 
 import (
 	"fmt"
+	"server-demo/iface"
+	"server-demo/util"
 	"strconv"
-	"zinx-demo/util"
-	"zinx-demo/iface"
 )
 
 type MsgHandler struct {
@@ -48,23 +48,23 @@ func (mg MsgHandler) AddRouter(msgID uint32, router iface.IRouter) {
 func (mh MsgHandler) StartWorkerPool() {
 	for i := 0; i < int(mh.WorkerPoolSize); i++ {
 		mh.TaskQueue[i] = make(chan iface.IRequest, util.GlobalObject.MaxWorkerTaskLen)
-		go mh.StartOneWorker(i,mh.TaskQueue[i])
+		go mh.StartOneWorker(i, mh.TaskQueue[i])
 	}
 }
 
 // 启动一个Worker工作流程
-func (mh *MsgHandler) StartOneWorker(workID int,taskQueue chan iface.IRequest) {
-	fmt.Println("Worker ID=",workID," is started")
+func (mh *MsgHandler) StartOneWorker(workID int, taskQueue chan iface.IRequest) {
+	fmt.Println("Worker ID=", workID, " is started")
 	// 不断的阻塞等待对应消息队列的消息
 	for {
 		select {
-		case request:=<-taskQueue:
+		case request := <-taskQueue:
 			mh.DoMsgHandler(request)
 		}
 	}
 }
 
-func (mh *MsgHandler)SendMsgToTaskQueue(request iface.IRequest){
+func (mh *MsgHandler) SendMsgToTaskQueue(request iface.IRequest) {
 	workerID := request.GetConnection().GetConnID() % mh.WorkerPoolSize
-	mh.TaskQueue[workerID]<-request
+	mh.TaskQueue[workerID] <- request
 }

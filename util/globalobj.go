@@ -3,7 +3,7 @@ package util
 import (
 	"encoding/json"
 	"os"
-	"zinx-demo/iface"
+	"server-demo/iface"
 )
 
 type GlobalObj struct {
@@ -31,13 +31,13 @@ var GlobalObject *GlobalObj
 
 func init() {
 	GlobalObject = &GlobalObj{
-		MaxConn:        100,
-		TcpPort:        8999,
-		MaxPackageSize: 4096,
-		Host:           "0.0.0.0",
-		Name:           "maguahu_server",
-		Version:        "v0.1",
-		WorkerPoolSize: 10,
+		MaxConn:          100,
+		TcpPort:          8999,
+		MaxPackageSize:   4096,
+		Host:             "0.0.0.0",
+		Name:             "maguahu_server",
+		Version:          "v0.1",
+		WorkerPoolSize:   10,
 		MaxWorkerTaskLen: 1024,
 	}
 	GlobalObject.Reload()
