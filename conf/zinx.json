@@ -1,0 +1,7 @@
+{
+    "name":"maguahu_server",
+    "host":"127.0.0.1",
+    "tcp_port":8999,
+    "max_conn":100,
+    "worker_pool_size": 10
+}
