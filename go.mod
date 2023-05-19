@@ -1,1 +1,1 @@
-module "zinx-demo"
+module "server-demo"
